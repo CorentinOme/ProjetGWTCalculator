@@ -155,7 +155,7 @@ public class CalculatorDecimalPresenter extends Composite {
         }
         if (!FieldVerifier.isValidDecimal(value)) {
             errorLabelAToR.addStyleName("serverResponseLabelError");
-            errorLabelAToR.setText("Format incorect");
+            errorLabelAToR.setText("Valeur incorrecte");
             return;
         }
         service.convertArabeToRoman(Integer.parseInt(valA.getText()), new AsyncCallback<String>() {
@@ -165,7 +165,7 @@ public class CalculatorDecimalPresenter extends Composite {
 
             public void onSuccess(String result) {
                 errorLabelAToR.setText(" ");
-                new DialogBoxInssetPresenter("Convertion Arabe to Roman", valA.getText(), result);
+                new DialogBoxInssetPresenter("Convertion Arabe to Roman", valA.getText(), "Le résultat est " + result);
             }
         });
     }
