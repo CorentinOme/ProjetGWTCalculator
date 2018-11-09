@@ -11,15 +11,15 @@
                 <g:Label>Montant initial et économie effectuée</g:Label>
             </g:FlowPanel>
             <g:FlowPanel>          
-              <g:TextBox ui:field="valA" text="Montant" width="100px"/>
-              <g:TextBox ui:field="valB" text="Pourcentage" width="100px"/>
-              <g:SubmitButton ui:field="boutonConvertAToB" text="Calculer"/>
+              <g:TextBox ui:field="montantInit" text="Montant" width="100px"/>
+              <g:TextBox ui:field="pourcentage" text="Pourcentage" width="100px"/>
+              <g:SubmitButton ui:field="boutonCalcul" text="Calculer"/>
             </g:FlowPanel>
             <g:FlowPanel>
-                <g:Label ui:field="errorLabelAToB" ></g:Label>
+                <g:Label ui:field="errorLabelPourcentage" ></g:Label>
             </g:FlowPanel>
             <g:FlowPanel>
-                <g:ResetButton ui:field="boutonClearAAndB" text="Reset"/>
+                <g:ResetButton ui:field="boutonReset" text="Reset"/>
             </g:FlowPanel>
         </g:FlowPanel>
         <g:FlowPanel>

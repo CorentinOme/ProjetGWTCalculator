@@ -24,5 +24,19 @@ public class Pourcentage2ServiceImpl extends RemoteServiceServlet implements Pou
         return res;
     }
 
+    @Override
+    public Double CalculEcono( Integer montantInit,Integer pourcentage )throws IllegalArgumentException{
+        if (FieldVerifier.isValidMontant(montantInit) && FieldVerifier.isValidPourcentage(pourcentage)){
+            double pourcentageNumber=(double)pourcentage/100;
+            double numberEcono =montantInit * pourcentageNumber;
+
+            double prixFinal =montantInit-numberEcono;
+
+            double resultatFinal = prixFinal;
+            return resultatFinal;
+         }else {
+            throw new IllegalArgumentException("test");
+        }
+    }
 
 }

@@ -84,4 +84,26 @@ public class FieldVerifier {
             return false;
         }
     }
+    
+    public static boolean isValidMontant(int montantInit){
+      
+        
+    if(montantInit < 999999 && montantInit>0){
+            return true;
+    }else{
+        return false;
+    }
+    }
+    
+   public static boolean isValidPourcentage(int pourcentage)
+   {
+       if(pourcentage > 0 && pourcentage<100)
+        {
+        return true;
+                }
+       else{
+       return false ;}
+       
+       
+   }
 }

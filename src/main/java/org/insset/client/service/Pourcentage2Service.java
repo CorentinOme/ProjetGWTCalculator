@@ -24,4 +24,5 @@ public interface Pourcentage2Service extends RemoteService {
      */
     Integer convertToBaseNumber(Integer nbr, Integer percent);
 
+    Double CalculEcono(Integer montantInit , Integer  pourcentage);
 }

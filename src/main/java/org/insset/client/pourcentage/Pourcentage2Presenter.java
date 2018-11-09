@@ -28,25 +28,26 @@ import org.insset.shared.FieldVerifier;
  */
 public class Pourcentage2Presenter extends Composite{
     @UiField
-    public SubmitButton boutonConvertAToB;
-    @UiField
     public SubmitButton boutonConvertGToH;
     @UiField
-    public ResetButton boutonClearAAndB;
-    @UiField
     public ResetButton boutonClearGAndH;
-    @UiField
-    public TextBox valA;
-    @UiField
-    public TextBox valB;
     @UiField
     public TextBox valG;
     @UiField
     public TextBox valH;
     @UiField
-    public Label errorLabelAToB;
-    @UiField
     public Label errorLabelGToH;
+    @UiField
+    public ResetButton boutonReset;
+    @UiField
+    public SubmitButton boutonCalcul;
+    @UiField
+    public TextBox pourcentage;
+    @UiField
+    public TextBox montantInit;
+    @UiField
+    public Label errorLabelPourcentage;
+    
     
     interface MainUiBinder extends UiBinder<HTMLPanel, Pourcentage2Presenter> {
     }
@@ -76,6 +77,21 @@ public class Pourcentage2Presenter extends Composite{
             }
 
         });
+        boutonReset.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                pourcentage.setText("");
+                errorLabelPourcentage.setText("");
+                montantInit.setText("");
+            }
+        });
+        boutonCalcul.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                convertPourcentage();
+            }
+
+        });
     }
     
     private void convertToStartingPrice(){        
@@ -97,13 +113,35 @@ public class Pourcentage2Presenter extends Composite{
         service.convertToBaseNumber(Integer.parseInt(valG.getText()), Integer.parseInt(valH.getText()), new AsyncCallback<Integer>() {
             @Override
             public void onFailure(Throwable caught) {
-                errorLabelGToH.setText(" ");
+                errorLabelGToH.setText(caught.getMessage());
             }
 
             @Override
             public void onSuccess(Integer result) {
                 errorLabelGToH.setText(" ");
                 new DialogBoxInssetPresenter("Calcul Modified to Base", valG.getText(), "Le prix de départ est de " + Integer.toString(result));
+            }
+        });
+    }
+    
+    private void convertPourcentage() {
+       int numberInit = Integer.parseInt(montantInit.getText());
+         int numberpourcentage = Integer.parseInt(pourcentage.getText());
+       
+       
+        if (!FieldVerifier.isValidMontant(numberInit) && !FieldVerifier.isValidPourcentage(numberpourcentage)) {
+            errorLabelPourcentage.addStyleName("serverResponseLabelError");
+            errorLabelPourcentage.setText("Format incorect");
+            return;
+        }
+        service.CalculEcono(numberInit,numberpourcentage, new AsyncCallback<Integer>() {
+            public void onFailure(Throwable caught) {
+                errorLabelGToH.setText(caught.getMessage());
+            }
+
+            public void onSuccess(Integer result) {
+               errorLabelPourcentage.setText(" ");
+                new DialogBoxInssetPresenter("Convertion Roman to arabe", montantInit.getText(), String.valueOf(result));
             }
         });
     }

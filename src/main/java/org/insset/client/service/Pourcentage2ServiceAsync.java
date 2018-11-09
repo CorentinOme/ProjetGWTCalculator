@@ -23,4 +23,6 @@ public interface Pourcentage2ServiceAsync {
      * @throws IllegalArgumentException
      */
     void convertToBaseNumber(Integer nbr, Integer percent, AsyncCallback<Integer> callback);
+    
+    void CalculEcono( Integer montantInit , Integer  pourcentage,  AsyncCallback<Integer> callback);
 }
