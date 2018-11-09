@@ -69,4 +69,19 @@ public class FieldVerifier {
         //Implement your code
         return true;
     }
+    
+    public static boolean isValidBaseNumber(Integer nbr){
+        if(nbr <= 0 || nbr > 9999){
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean isValidBasePourcentage(Integer nbr){
+        if(nbr >= 0 && nbr <= 100){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

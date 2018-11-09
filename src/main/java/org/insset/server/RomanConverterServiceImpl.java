@@ -32,8 +32,7 @@ public class RomanConverterServiceImpl extends RemoteServiceServlet implements
     @Override
     public String convertArabeToRoman(Integer nbr) throws IllegalArgumentException {
         //Implement your code
-        FieldVerifier field = new FieldVerifier();
-        if(field.isValidDecimal(nbr)){
+        if(FieldVerifier.isValidDecimal(nbr)){
             String s = "";
             while (nbr >= 1000) {
                 s += "M";
